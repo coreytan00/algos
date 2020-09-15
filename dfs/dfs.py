@@ -1,5 +1,4 @@
-import time
-# simple dfs
+#simple dfs
 
 #undirected graph - what's given
 g = [[1,2], [0,3], [0,3], [1,2,4], [3,5,6], [4], [4]]
@@ -9,7 +8,7 @@ starting = 0
 stack = [starting]
 
 # iterative
-def rundfsI():
+def dfsI():
 	visited[starting] = True
 	# [0]
 	while len(stack) != 0:
@@ -20,7 +19,7 @@ def rundfsI():
 				stack.append(node)
 				visited[node] = True
 
-rundfsI()
+dfsI()
 print(visited)
 
 visited = [False] * 7
@@ -28,11 +27,18 @@ starting = 0
 stack = [starting]
 
 #recursive
-def rundfsR(base):
+def dfsR(base):
 	visited[base] = True
 	for node in g[base]:
 		if visited[node] == False:
-			rundfsR(node)
+			dfsR(node)
 
-rundfsR(starting)
+def dfsR2(base):
+	if visited[base]:
+		return
+	visited[base] = True
+	for node in g[base]:
+		dfsR(node)
+
+dfsR2(starting)
 print(visited)
